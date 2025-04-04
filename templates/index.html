@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Productos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}"></head>
+<body>
+    <!-- Menú lateral -->
+    <div id="menu-lateral" class="menu-lateral">
+        <h2>Menú</h2>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('ventas') }}">Registrar Venta</a></li>
+            <li><a href="{{ url_for('agregar_producto') }}">Agregar Producto</a></li>
+        </ul>
+    </div>
+
+    <!-- Barra superior -->
+    <div class="barra-superior">
+        <button id="toggle-menu" class="menu-boton">☰</button>
+        <span id="vendedor">Cliente: {{ c_nom }}</span>
+        <a href="{{ url_for('logout') }}">Cerrar Sesión</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="contenido-principal">
+        <div class="cuadro-principal">
+            <!-- Botón de vista -->
+            <div class="botones-vista">
+                <button id="toggle-vista">Vista: Cuadrados</button>
+            </div>
+
+            <!-- Buscador de productos -->
+            <div class="buscador-productos">
+                <input type="text" id="buscador" placeholder="Buscar productos...">
+            </div>
+
+            <!-- Contenedor de productos -->
+            <div class="contenedor-productos" id="contenedor-productos">
+                <!-- Cajas de gestión de productos (Vista en cuadrados) -->
+                <div class="gestion-productos vista-cuadrados">
+                    {% for producto in productos %}
+                    <div class="caja-producto {% if producto.p_stock == 0 %}agotado{% endif %}">
+                        <a href="{{ url_for('actualizar_producto', producto_id=producto.p_id_producto) }}">
+                            {% if producto.p_imagen %}
+                            <img src="{{ url_for('static', filename=producto.p_imagen) }}" alt="{{ producto.p_nom }}" width="100">
+                            {% endif %}
+                            <span>{{ producto.p_nom }}</span>
+                        </a>
+                        {% if producto.p_stock == 0 %}
+                        <div class="agotado-text">Agotado</div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Lista de productos (Vista en lista) -->
+                <div class="lista-productos vista-lista" style="display: none;">
+                    <!-- Encabezado de la lista -->
+                    <div class="lista-header">
+                        <span>Nombre</span>
+                        <span>Tipo</span>
+                        <span>Precio (IVA incluido)</span>
+                    </div>
+
+                    <!-- Productos en la lista -->
+                    {% for producto in productos %}
+                    <a href="{{ url_for('actualizar_producto', producto_id=producto.p_id_producto) }}" class="lista-item" data-precio="{{ producto.p_precio }}">
+                        <span class="nombre-producto">{{ producto.p_nom }}</span>
+                        <span class="tipo-producto">{{ producto.p_tipo }}</span>
+                        <span class="precio-producto"></span>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

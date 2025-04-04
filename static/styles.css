@@ -1,0 +1,529 @@
+/* Reset básico */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Menú lateral */
+.menu-lateral {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.menu-lateral h2 {
+    margin-top: 0;
+    color: #fff;
+}
+
+.menu-lateral ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-lateral ul li {
+    margin: 15px 0;
+}
+
+.menu-lateral ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.menu-lateral ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Barra superior */
+.barra-superior {
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    width: 100%;
+    height: 45px;
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    /* padding: 0px 14px; */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    align-items: center;
+}
+
+/* Botón del menú */
+.menu-boton {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* Nombre del vendedor */
+#vendedor {
+    margin-left: auto;
+    margin-right: 20px;
+    padding-left: 20px;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+    text-align: right;
+}
+
+/* Estilos para el enlace de cerrar sesión */
+.barra-superior a {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px; /* Agregamos un margen a la derecha */
+}
+
+/* Contenido principal */
+.contenido-principal {
+    margin-left: 0;
+    padding: 70px 20px;
+    transition: margin-left 0.3s ease;
+}
+
+/* Menú visible */
+.menu-lateral.visible {
+    transform: translateX(0);
+}
+
+.contenido-principal.menu-abierto {
+    margin-left: 250px;
+}
+
+/* Cuadro principal */
+.contenido-principal .cuadro-principal {
+    width: 70%;
+    float: left;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Buscador de productos */
+.buscador-productos {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.buscador-productos input[type="text"] {
+    padding: 8px;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px; /* Agregamos un margen inferior al input */
+}
+
+/* Estilos para los resultados de búsqueda */
+#resultados-busqueda {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 70%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    display: none;
+    overflow-y: auto; /* Agrega scroll si los resultados son muy largos */
+    max-height: 200px; /* Altura máxima del contenedor de resultados */
+}
+
+#resultados-busqueda a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s; /* Transición suave al pasar el mouse */
+}
+
+#resultados-busqueda a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Estilos para resaltar el texto buscado */
+.resaltar {
+    font-weight: bold;
+    background-color: yellow; /* Resaltar el texto encontrado */
+}
+
+/* Cajas de gestión de productos */
+.gestion-productos {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.caja-producto {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column; /* Apilar la imagen y el nombre */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative; /* Para posicionar el texto de "Agotado" */
+    overflow: hidden;
+}
+
+.caja-producto a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    flex-direction: column; /* Apilar la imagen y el nombre */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.caja-producto img {
+    margin-bottom: 5px; /* Espacio entre la imagen y el nombre */
+}
+
+/* Estilo para productos agotados */
+.caja-producto.agotado {
+    background-color: rgba(255, 0, 0, 0.1); /* Rojo transparente */
+}
+
+/* Franja "Agotado" */
+.agotado-text {
+    position: absolute;
+    width: 200%;
+    height: 30px;
+    background-color: red;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    transform: rotate(-45deg);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Sombreado */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Sombreado del texto */
+}
+
+/* Estilos para los botones de vista */
+.botones-vista {
+    margin-bottom: 20px;
+}
+
+.botones-vista button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.botones-vista button.activo {
+    background-color: #0056b3;
+}
+
+/* Estilos para el botón de vista */
+#toggle-vista {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#toggle-vista:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para la vista en lista */
+.lista-productos {
+    width: 100%;
+}
+
+.lista-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f0f0f0;
+    font-weight: bold;
+    font-weight: bold;
+
+}
+
+.lista-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    text-decoration: none; /* Eliminar el subrayado del enlace */
+    color: #333; /* Establecer el color del texto */
+}
+
+.lista-item:hover {
+    background-color: #f9f9f9;
+}
+
+.lista-item span {
+    width: 33%;
+    text-align: center;
+}
+
+/* Estilos para la página de registro de venta */
+.registro-venta {
+    width: 34%;
+    margin: 14px auto;
+    padding: 16px;
+    border: 4px solid #ccc;
+    border-radius: 29px;
+    background-color: #f9f9f9;
+}
+
+.registro-venta h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.registro-venta form {
+    display: flex;
+    flex-direction: column;
+}
+
+.registro-venta label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 8px; /* Agregamos un margen inferior a los labels */
+}
+
+.registro-venta input[type="number"],
+.registro-venta input[type="text"],
+.registro-venta input[type="file"] {
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.registro-venta button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.registro-venta button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para el buscador de productos en la página de ventas */
+.buscador-productos {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.buscador-productos input[type="text"] {
+    padding: 8px;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px; /* Agregamos un margen inferior al input */
+}
+
+/* Estilos para los resultados de búsqueda */
+#resultados-busqueda {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 70%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    display: none;
+    overflow-y: auto; /* Agrega scroll si los resultados son muy largos */
+    max-height: 200px; /* Altura máxima del contenedor de resultados */
+}
+
+#resultados-busqueda a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s; /* Transición suave al pasar el mouse */
+}
+
+#resultados-busqueda a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Estilos para resaltar el texto buscado */
+.resaltar {
+    font-weight: bold;
+    background-color: yellow; /* Resaltar el texto encontrado */
+}
+
+/* Estilos para la vista en cuadrados */
+.gestion-productos.vista-cuadrados {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 20px; /* Agrega un padding al contenedor */
+    border: 2px solid #ccc; /* Agrega un borde al contenedor */
+    border-radius: 10px; /* Agrega un radio de borde al contenedor */
+    margin: 20px; /* Agrega un margen al contenedor */
+}
+
+.caja-producto {
+    margin: 10px; /* Aumenta el margen entre los productos */
+    box-sizing: border-box;
+    border: 1px solid #ddd; /* Agrega un borde a cada producto */
+    border-radius: 5px; /* Agrega un radio de borde a cada producto */
+    padding: 10px; /* Agrega un padding a cada producto */
+    background-color: #f9f9f9; /* Agrega un color de fondo a cada producto */
+}
+
+/* Estilos para escritorio (ancho de pantalla mayor o igual a 768px) */
+@media (min-width: 768px) {
+    .caja-producto {
+        width: calc(25% - 20px); /* 4 productos por fila en escritorio */
+    }
+}
+
+/* Estilos para dispositivos móviles (ancho de pantalla menor a 768px) */
+@media (max-width: 768px) {
+    .gestion-productos.vista-cuadrados {
+        justify-content: center;
+        padding: 10px; /* Reduce el padding en dispositivos móviles */
+        margin: 10px; /* Reduce el margen en dispositivos móviles */
+    }
+
+    .caja-producto {
+        width: calc(50% - 20px); /* 2 productos por fila en móviles */
+        margin: 5px; /* Reduce el margen entre los productos en dispositivos móviles */
+        padding: 5px; /* Reduce el padding en dispositivos móviles */
+    }
+
+    /* Estilos para el cuadro principal en dispositivos móviles */
+    .contenido-principal .cuadro-principal {
+        width: 100%; /* Ocupa todo el ancho de la pantalla */
+    }
+}
+
+/* Estilos para la página de la factura */
+.factura-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.factura-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.factura-container p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.factura-container strong {
+    font-weight: bold;
+    color: #333;
+}
+
+.factura-container a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.factura-container a:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para la página de inicio de sesión */
+.login-container {
+    width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login-container button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: #0056b3;
+}
+
+.login-container .error {
+    color: red;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Producto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}"></head>
+<body>
+    <!-- Menú lateral -->
+    <div id="menu-lateral" class="menu-lateral">
+        <h2>Menú</h2>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('ventas') }}">Registrar Venta</a></li>
+            <li><a href="{{ url_for('agregar_producto') }}">Agregar Producto</a></li>
+        </ul>
+    </div>
+
+    <!-- Barra superior -->
+    <div class="barra-superior">
+        <button id="toggle-menu" class="menu-boton">☰</button>
+        <span id="vendedor">Cliente: {{ session['c_nom'] }}</span>
+        <a href="{{ url_for('logout') }}">Cerrar Sesión</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="contenido-principal">
+        <div class="registro-venta">
+            <h2>Agregar Producto</h2>
+            <form method="post" enctype="multipart/form-data">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" required>
+
+                <label for="tipo">Tipo:</label>
+                <input type="text" name="tipo" id="tipo" required>
+
+                <label for="precio">Precio:</label>
+                <input type="number" name="precio" id="precio" required>
+
+                <label for="stock">Stock:</label>
+                <input type="number" name="stock" id="stock" required>
+
+                <label for="imagen">Imagen:</label>
+                <input type="file" name="imagen" id="imagen" accept="image/*" required>
+
+                <button type="submit">Agregar Producto</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

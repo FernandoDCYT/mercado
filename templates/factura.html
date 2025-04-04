@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}"></head>
+<body>
+    <div class="factura-container">
+        <h1>Factura</h1>
+        <p><strong>ID de Venta:</strong> {{ factura.venta_id }}</p>
+        <p><strong>Fecha:</strong> {{ factura.fecha }}</p>
+        <p><strong>Producto:</strong> {{ factura.producto }}</p>
+        <p><strong>Cantidad:</strong> {{ factura.cantidad }}</p>
+        <p><strong>Precio Unitario:</strong> {{ factura.precio_unitario }}</p>
+        <p><strong>Subtotal:</strong> {{ factura.subtotal }}</p>
+        <p><strong>IVA (16%):</strong> {{ factura.iva }}</p>
+        <p><strong>Total:</strong> {{ factura.total }}</p>
+        <a href="{{ url_for('ventas') }}">Registrar otra venta</a>
+        <a href="{{ url_for('index') }}">Volver a la lista de productos</a>
+    </div>
+</body>
+</html>

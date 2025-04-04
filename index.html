@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Redireccionando...</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}">
     <script>
-        window.location.href = "/login";
+        window.location.href = "/templates/login.html";
     </script>
 </head>
 <body>
-    <p>Si no eres redirigido automáticamente, haz clic <a href="/login">aquí</a>.</p>
+    <p>Si no eres redirigido automáticamente, haz clic <a href="/templates/login.html">aquí</a>.</p>
 </body>
 </html>
